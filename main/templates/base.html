@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}My shop{% endblock %}</title>
+  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <a href="/" class="logo">My shop</a>
+  </div>
+  <div id="subheader">
+    <div class="cart">
+      <a href="{% url 'main:register_page' %}">Регистрация</a>
+      <a href="{% url 'main:login_page' %}">Вход</a>
+      <a href="{% url 'main:logout_page' %}">Выход</a>
+      {% if user.is_authenticated %}
+          Добро пожаловать, {{ user.username }}. Вы же уже авторизорваны.
+      {% endif %}
+    </div>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

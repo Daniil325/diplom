@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div id="main" class="product-list">
+    {% for post in posts %}
+        <p>{{ post.title }}</p>
+        <p>{{ post.description|truncatewords:40|safe }}</p>
+        <p><img src="{{ post.image.url }}" width="400" height="300"></p>
+        <p class='company'>{{ post.adress }}</p>
+        <p class='company'>{{ post.director }}</p>
+        <a href="{{ post.get_absolute_url }}">Читать полностью</a>
+
+    {% endfor %}
+  </div>
+{% endblock %}

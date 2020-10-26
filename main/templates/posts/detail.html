@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ post.title }}
+{% endblock %}
+
+<script type="text/javascript">
+    var video = document.getElementById('vidId');
+        // or video = $('.video-selector')[0];
+        video.pause();
+        video.currentTime = 0;
+        video.load();
+</script>
+
+{% block content %}
+{% for post in posts %}
+  <div class="product-detail">
+    <img src="{{ post.image.url }}">
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.description }}</p>
+    <p>
+      <video width="400" height="300" controls="controls">
+         <source src="{{ post.video.url }}" type='video/mp4'>
+      </video>
+    </p>
+    <p class='company'>{{ post.adress }}</p>
+    <p class='company'>{{ post.director }}</p>
+  </div>
+    {% endfor %}
+<div>
+  <h2>Комментарии</h2>
+  <hr>
+          <p>Добавить комментарий</p>
+          <div class="">
+          <form action="" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="Добавить">
+          </form>
+          <hr>
+  {% for comment in comments %}
+      <p>{{ comment.author }}
+      {{ comment.create_date }}</p>
+      <p>{{ comment.text }}</p>
+  {% endfor %}
+</div>
+{% endblock %}

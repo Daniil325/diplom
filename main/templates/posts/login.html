@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+      <h1>Вход на сайт</h1>
+      {% if error %}
+        <div style="color:red;">{{ error }}</div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <p><input type="text" name="username" placeholder="Логин"></p><b>Имя пользователя</b>
+        <p><b>Пароль</b><input type="password" name="password" placeholder="Пароль"></p>
+        <p><a href="/"><input type="submit" value="Войти"></a></p>
+      </form>
+  </div>
+{% endblock %}
